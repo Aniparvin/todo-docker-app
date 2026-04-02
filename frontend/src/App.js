@@ -29,6 +29,7 @@ function App() {
     fetchTodos();
   };
 
+
   const toggleTodo = async (todo) => {
     await axios.put(`${API}${todo.id}/`, {
       ...todo,
@@ -61,6 +62,9 @@ function App() {
             </span>
             <button className="delete" onClick={() => deleteTodo(todo.id)}>
               ❌
+            </button>
+            <button onClick={() => editTodo(todo)}>
+               Edit
             </button>
           </li>
         ))}
