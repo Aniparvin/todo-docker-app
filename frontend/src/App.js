@@ -23,13 +23,23 @@ function App() {
     setTitle("");
     fetchTodos();
   };
+  const updateTodo = async (id, newTitle) => {
+    await fetch(`/api/todos/${id}/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title: newTitle }),
+    });
+
+    fetchTodos();
+  };
 
   const deleteTodo = async (id) => {
     await axios.delete(`${API}${id}/`);
     fetchTodos();
   };
-
-
+  
   const toggleTodo = async (todo) => {
     await axios.put(`${API}${todo.id}/`, {
       ...todo,
@@ -63,9 +73,10 @@ function App() {
             <button className="delete" onClick={() => deleteTodo(todo.id)}>
               ❌
             </button>
-            <button onClick={() => editTodo(todo)}>
-               Edit
+            <button onClick={() => updateTodo(todo.id, prompt("Edit todo:", todo.title))}>
+              Edit
             </button>
+            
           </li>
         ))}
       </ul>

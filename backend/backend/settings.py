@@ -37,8 +37,7 @@ SECRET_KEY = 'django-insecure-(zs-mx!!lw@2b*nj2a_^wk56&hvfp7%!+yj*7%x9gf4qeusem8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1", "backend"]
 
 # Application definition
 
@@ -90,16 +89,15 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "todo_db",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "postgres_db",
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'todo_db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

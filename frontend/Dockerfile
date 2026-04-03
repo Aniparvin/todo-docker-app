@@ -1,11 +1,14 @@
-# Build stage
-FROM node:18 AS build
+FROM node:18
 
 WORKDIR /app
-COPY . .
+
+COPY package.json .
 RUN npm install
+
+COPY . .
+
 RUN npm run build
 
-# Serve stage
-FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
+RUN npm install -g serve
+
+CMD ["serve", "-s", "build", "-l", "80"]
